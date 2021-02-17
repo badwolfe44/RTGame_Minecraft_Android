@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">RTGame Minecraft</string>
+    <string name="open">open</string>
+    <string name="close">close</string>
+    <string name="rules_info"><![CDATA[Rules & Info]]></string>
+    <string name="wiki">Wiki</string>
+    <string name="survival">Survival</string>
+    <string name="build">Build</string>
+    <string name="creative">Creative</string>
+    <string name="server_maps">Server Maps</string>
+    <string name="knowledge">Knowledge</string>
+    <string name="Stats">stats</string>
+    <string name="Player">player</string>
+    <string name="Server">server</string>
+    <string name="server">Server</string>
+    <string name="player">Player</string>
+</resources>

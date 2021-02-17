@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="@string/knowledge">
+
+        <menu>
+
+            <item
+                android:id="@+id/rulesAndInfo"
+                android:icon="@drawable/ic_baseline_rule_24"
+                android:title="@string/rules_info" />
+            <item
+                android:id="@+id/wiki"
+                android:icon="@drawable/ic_baseline_public_24"
+                android:title="@string/wiki" />
+
+        </menu>
+
+    </item>
+
+    <item android:title="@string/server_maps">
+
+        <menu>
+
+            <item
+                android:id="@+id/survival"
+                android:icon="@drawable/ic_baseline_landscape_24"
+                android:title="@string/survival" />
+            <item
+                android:id="@+id/build"
+                android:icon="@drawable/ic_baseline_construction_24"
+                android:title="@string/build" />
+            <item
+                android:id="@+id/creative"
+                android:icon="@drawable/ic_baseline_color_lens_24"
+                android:title="@string/creative" />
+
+        </menu>
+
+    </item>
+
+    <!--<item android:title="@string/Stats">
+
+        <menu>
+
+            <item
+                android:id="@+id/playerStats"
+                android:icon="@drawable/ic_baseline_landscape_24"
+                android:title="@string/player" />
+            <item
+                android:id="@+id/serverStats"
+                android:icon="@drawable/ic_baseline_construction_24"
+                android:title="@string/server" />
+
+        </menu>
+
+    </item>-->
+
+</menu>
