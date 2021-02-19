@@ -9,10 +9,13 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
@@ -25,6 +28,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     NavigationView navigationView;
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
+
+    WebView wv;
+
+
+
+    public String url;
 
     private long backPressedTime;
 
@@ -45,10 +54,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
         actionBarDrawerToggle.syncState();
 
-        fragmentManager = getSupportFragmentManager();
+        wv = (WebView) findViewById(R.id.webViewTest);
+        wv.setWebViewClient(new WebViewClient());
+        wv.getSettings().setJavaScriptEnabled(true);
+        wv.loadUrl("https://bookstack.rtgame.co.uk/books/minecraft");
+
+        /*fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.container_fragment, new InfoFragment());
-        fragmentTransaction.commit();
+        fragmentTransaction.commit();*/
 
 
     }
@@ -56,59 +70,42 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
+
         drawerLayout.closeDrawer(GravityCompat.START);
 
         if (menuItem.getItemId() == R.id.rulesAndInfo) {
 
-            fragmentManager = getSupportFragmentManager();
-            fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.container_fragment, new InfoFragment());
-            fragmentTransaction.commit();
+            wv.loadUrl("https://bookstack.rtgame.co.uk/books/minecraft");
 
         }
 
         if (menuItem.getItemId() == R.id.wiki) {
 
-            fragmentManager = getSupportFragmentManager();
-            fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.container_fragment, new WikiFragment());
-            fragmentTransaction.commit();
+            wv.loadUrl("https://wiki.rtgame.co.uk/");
 
         }
 
         if (menuItem.getItemId() == R.id.survival) {
 
-            fragmentManager = getSupportFragmentManager();
-            fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.container_fragment, new SurvivalFragment());
-            fragmentTransaction.commit();
+            wv.loadUrl("https://minecraft.rtgame.co.uk/map/survival");
 
         }
 
         if (menuItem.getItemId() == R.id.build) {
 
-            fragmentManager = getSupportFragmentManager();
-            fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.container_fragment, new BuildFragment());
-            fragmentTransaction.commit();
+            wv.loadUrl("https://minecraft.rtgame.co.uk/map/build");
 
         }
 
         if (menuItem.getItemId() == R.id.creative) {
 
-            fragmentManager = getSupportFragmentManager();
-            fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.container_fragment, new CreativeFragment());
-            fragmentTransaction.commit();
+            wv.loadUrl("https://minecraft.rtgame.co.uk/map/creative");
 
         }
 
         /*if (menuItem.getItemId() == R.id.playerStats) {
 
-            fragmentManager = getSupportFragmentManager();
-            fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.container_fragment, new PlayerFragment());
-            fragmentTransaction.commit(); 
+            wv.loadUrl("https://bookstack.rtgame.co.uk/books/minecraft");
 
         }*/
 
@@ -116,7 +113,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    @Override
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    /*@Override
     public void onBackPressed() {
 
         if(backPressedTime + 2000 > System.currentTimeMillis()) {
@@ -132,5 +137,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         backPressedTime = System.currentTimeMillis();
 
+    }*/
+
+    @Override
+    public void onBackPressed() {
+        if (wv.canGoBack()) {
+            wv.goBack();
+        } else {
+
+            if(backPressedTime + 2000 > System.currentTimeMillis()) {
+
+                super.onBackPressed();
+                return;
+
+            } else {
+
+                Toast.makeText(getBaseContext(), "Press back again to exit", Toast.LENGTH_SHORT).show();
+
+            }
+
+            backPressedTime = System.currentTimeMillis();
+
+        }
     }
+
 }
